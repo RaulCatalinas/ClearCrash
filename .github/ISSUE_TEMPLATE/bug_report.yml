@@ -1,0 +1,106 @@
+name: 🐛 Bug Report
+description: Report a bug or unexpected behavior in ClearCrash
+title: "[Bug]: "
+labels: [ "bug", "needs-triage" ]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out this form as completely as possible.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is.
+      placeholder: When I trigger a NullPointerException, ClearCrash shows...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Install ClearCrash 1.0.0
+        2. Trigger a NullPointerException by...
+        3. Check Logcat
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+      placeholder: The error message should show...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: Instead, the error message shows...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logcat
+    attributes:
+      label: Logcat Output
+      description: Please paste relevant Logcat output here
+      placeholder: Paste Logcat output...
+      render: shell
+    validations:
+      required: false
+
+  - type: input
+    id: clearcrash-version
+    attributes:
+      label: ClearCrash Version
+      description: Which version of ClearCrash are you using?
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: android-version
+    attributes:
+      label: Android Version
+      description: Which Android version are you testing on?
+      placeholder: "Android 13 (API 33)"
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      description: Which device are you using?
+      placeholder: "Pixel 5, Samsung Galaxy S21, Emulator, etc."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: build-type
+    attributes:
+      label: Build Type
+      description: Are you using debug or release build?
+      options:
+        - Debug
+        - Release
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: This happens only when...
+    validations:
+      required: false

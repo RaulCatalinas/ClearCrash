@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/RaulCatalinas/ClearCrash/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: ⭐ Show Your Support
+    url: https://github.com/RaulCatalinas/ClearCrash
+    about: Star the repository if you find it useful!
