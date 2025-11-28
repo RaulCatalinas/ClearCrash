@@ -3,7 +3,7 @@
 **Stop wasting time deciphering cryptic Android crashes. Get instant clear explanations, root
 causes, and fixes.**
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.clearcrash/clearcrash.svg)](https://search.maven.org/search?q=g:%22com.clearcrash%22)
+[![Maven Central](https://img.shields.io/maven-central/v/com.raulcatalinas.clearcrash/clearcrash.svg)](https://search.maven.org/search?q=g:%22com.clearcrash%22)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://android-arsenal.com/api?level=21)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
