@@ -4,21 +4,38 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
+import android.util.Log
 
 /**
  * ContentProvider that auto-initializes ClearCrash.
  * This runs before Application.onCreate(), so no manual setup is needed.
+ *
+ * Users don't need to know this exists - it just works automatically.
  */
 class ClearCrashInitializer : ContentProvider() {
-
-    override fun onCreate(): Boolean {
-        context?.let { ctx ->
-            ClearCrash.install(ctx.applicationContext)
-        }
-        return true
+    companion object {
+        private const val TAG = "ClearCrash"
     }
 
-    // These methods are not used, but required by ContentProvider
+    override fun onCreate(): Boolean {
+        return try {
+            val appContext = context?.applicationContext
+
+            if (appContext == null) {
+                Log.w(TAG, "Context is null during initialization")
+                return true
+            }
+
+            ClearCrash.install(appContext)
+            Log.d(TAG, "ClearCrash auto-initialized successfully ✓")
+
+            true
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to auto-initialize ClearCrash", e)
+            true
+        }
+    }
+
     override fun query(
         uri: Uri,
         projection: Array<out String>?,

@@ -4,35 +4,63 @@ import android.content.Context
 import android.util.Log
 
 /**
- * ClearCrash - Transform cryptic Android crashes into clear, actionable error messages.
+ * Main ClearCrash class that handles exception interception and analysis.
  *
- * This library auto-initializes via ContentProvider. No manual setup required.
+ * Automatically initialized via ContentProvider - no manual setup required.
  */
 object ClearCrash {
-
     private const val TAG = "ClearCrash"
-    private const val VERSION = "1.0.0"
+
+    @Volatile
     private var isInitialized = false
 
+    private var defaultHandler: Thread.UncaughtExceptionHandler? = null
+    private var appContext: Context? = null
+
     /**
-     * Initializes ClearCrash. Called automatically by ClearCrashInitializer.
-     * You don't need to call this manually.
+     * Installs ClearCrash exception handler.
+     * Called automatically by ClearCrashInitializer.
      */
-    fun install(context: Context) {
+    internal fun install(context: Context) {
         if (isInitialized) {
-            Log.w(TAG, "ClearCrash is already initialized")
+            Log.w(TAG, "ClearCrash already initialized, skipping")
             return
         }
 
-        isInitialized = true
+        try {
+            appContext = context.applicationContext
+            defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
 
-        // Print to console for visibility
-        println("════════════════════════════════════════════════════════════")
-        println("🚀 ClearCrash v$VERSION initialized successfully!")
-        println("   Better crash messages enabled in Logcat")
-        println("════════════════════════════════════════════════════════════")
+            Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+                handleException(thread, throwable)
+            }
 
-        // Also log to Logcat
-        Log.i(TAG, "ClearCrash v$VERSION initialized - Better crash messages enabled")
+            isInitialized = true
+            Log.d(TAG, "✓ ClearCrash installed successfully")
+
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to install ClearCrash", e)
+        }
+    }
+
+    private fun handleException(thread: Thread, throwable: Throwable) {
+        try {
+            val enhancedMessage = ExceptionAnalyzer.analyze(throwable)
+
+            // Print with visual separators
+            Log.e(TAG, "\n" + "=".repeat(60))
+            Log.e(TAG, enhancedMessage)
+            Log.e(TAG, "=".repeat(60) + "\n")
+
+        } catch (e: Exception) {
+            Log.e(
+                TAG,
+                "ClearCrash failed to analyze exception (Please report the bug at: https://github.com/RaulCatalinas/ClearCrash)",
+                e
+            )
+        } finally {
+            // CRITICAL: Always pass to original handler
+            defaultHandler?.uncaughtException(thread, throwable)
+        }
     }
 }
