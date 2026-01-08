@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
-        <!-- Auto-initialization via ContentProvider -->
         <provider
             android:name=".ClearCrashInitializer"
-            android:authorities="${applicationId}.clearcrash-initializer"
+            android:authorities="${applicationId}.clearcrash.initializer"
             android:exported="false"
-            android:initOrder="100" />
+            android:enabled="true" />
     </application>
+
 </manifest>
