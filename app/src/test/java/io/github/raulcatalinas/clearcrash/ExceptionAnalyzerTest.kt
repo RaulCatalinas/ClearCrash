@@ -32,9 +32,6 @@ class ExceptionAnalyzerTest {
         } catch (e: NullPointerException) {
             val analysis = ExceptionAnalyzer.analyze(e)
 
-            println("Exception: NullPointerException")
-            println("Message: $analysis")
-            println()
             println("Analysis Result:")
             println(analysis)
             println("-".repeat(60))

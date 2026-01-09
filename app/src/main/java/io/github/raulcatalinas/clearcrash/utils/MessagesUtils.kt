@@ -36,9 +36,16 @@ object MessageFormatter {
             appendLine(whatHappened)
             appendLine()
 
+            // Location section
+            if (location != null) {
+                appendLine("📍 IN YOUR CODE:")
+                appendLine(location.format())
+                appendLine()
+            }
+
             // Why it happened section
             if (whyItHappened.isNotEmpty()) {
-                appendLine("🔍 WHY IT HAPPENED:")
+                appendLine("🔍 MOST LIKELY CAUSES:")
 
                 whyItHappened.forEach { reason ->
                     appendLine("• $reason")
@@ -58,17 +65,10 @@ object MessageFormatter {
                 appendLine()
             }
 
-            // Additional info section (optional)
+            // Additional info section (optional, at the end)
             if (additionalInfo != null) {
                 appendLine("ℹ️  ADDITIONAL INFO:")
                 appendLine(additionalInfo)
-                appendLine()
-            }
-
-            // Location section
-            if (location != null) {
-                appendLine("📍 IN YOUR CODE:")
-                appendLine(location.format())
             }
         }
     }
@@ -86,12 +86,13 @@ object MessageFormatter {
             appendLine(message ?: "No error details available")
             appendLine()
 
+            // Location first
             if (location != null) {
                 appendLine("📍 IN YOUR CODE:")
                 appendLine(location.format())
+                appendLine()
             }
 
-            appendLine()
             appendLine("💡 This error type isn't specifically handled yet.")
             appendLine("Help us improve: https://github.com/RaulCatalinas/ClearCrash/issues")
         }
