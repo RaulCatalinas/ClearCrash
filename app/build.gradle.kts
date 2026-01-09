@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.raulcatalinas.clearcrash"
+    namespace = "io.github.raulcatalinas.clearcrash"
     compileSdk = project.property("COMPILE_SDK").toString().toInt()
 
     defaultConfig {

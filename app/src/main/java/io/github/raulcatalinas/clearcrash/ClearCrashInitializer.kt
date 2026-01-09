@@ -1,4 +1,4 @@
-package com.raulcatalinas.clearcrash
+package io.github.raulcatalinas.clearcrash
 
 import android.content.ContentProvider
 import android.content.ContentValues

@@ -1,4 +1,4 @@
-package com.raulcatalinas.clearcrash.utils
+package io.github.raulcatalinas.clearcrash.utils
 
 /**
  * Formats error messages with consistent structure and styling.

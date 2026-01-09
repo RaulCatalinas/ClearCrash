@@ -1,8 +1,10 @@
-package com.raulcatalinas.clearcrash
+package io.github.raulcatalinas.clearcrash
 
-import org.junit.Test
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Assert.*
+import org.junit.Test
 
 /**
  * Unit tests for ClearCrashInitializer auto-initialization.
@@ -103,7 +105,8 @@ class ClearCrashInitializerTest {
 
     @Test
     fun printInitializationFlow() {
-        println("""
+        println(
+            """
 
             📋 ClearCrash Auto-Initialization Flow:
             ──────────────────────────────────────
@@ -115,7 +118,8 @@ class ClearCrashInitializerTest {
             6. All exceptions are now intercepted and analyzed
 
             ✓ No manual setup needed - completely automatic! 🎉
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 }
 

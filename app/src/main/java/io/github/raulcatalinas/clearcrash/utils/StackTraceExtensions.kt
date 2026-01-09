@@ -1,4 +1,4 @@
-package com.raulcatalinas.clearcrash.utils
+package io.github.raulcatalinas.clearcrash.utils
 
 /**
  * Extension functions for working with stack traces.

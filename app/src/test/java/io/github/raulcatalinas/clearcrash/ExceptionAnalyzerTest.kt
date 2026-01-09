@@ -1,8 +1,10 @@
-package com.raulcatalinas.clearcrash
+package io.github.raulcatalinas.clearcrash
 
-import org.junit.Test
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Assert.*
+import org.junit.Test
 
 /**
  * Unit tests for ExceptionAnalyzer.
@@ -23,18 +25,23 @@ class ExceptionAnalyzerTest {
         println("📍 TEST: Analyzing NullPointerException")
         println("-".repeat(60))
 
-        val exception = NullPointerException("Cannot invoke method on null object")
-        val analysis = ExceptionAnalyzer.analyze(exception)
+        try {
+            val text: String? = null
 
-        println("Exception: NullPointerException")
-        println("Message: ${exception.message}")
-        println()
-        println("Analysis Result:")
-        println(analysis)
-        println("-".repeat(60))
+            println(text!!.length)
+        } catch (e: NullPointerException) {
+            val analysis = ExceptionAnalyzer.analyze(e)
 
-        assertNotNull("Analysis should not be null", analysis)
-        assertTrue("Analysis should not be empty", analysis.isNotEmpty())
+            println("Exception: NullPointerException")
+            println("Message: $analysis")
+            println()
+            println("Analysis Result:")
+            println(analysis)
+            println("-".repeat(60))
+
+            assertNotNull("Analysis should not be null", analysis)
+            assertTrue("Analysis should not be empty", analysis.isNotEmpty())
+        }
     }
 
     @Test
@@ -182,7 +189,8 @@ class ExceptionAnalyzerTest {
 
     @Test
     fun printExceptionAnalyzerSummary() {
-        println("""
+        println(
+            """
 
             📊 ExceptionAnalyzer Test Summary:
             ──────────────────────────────────
@@ -208,7 +216,8 @@ class ExceptionAnalyzerTest {
 
             ✨ The analyzer automatically filters out framework code
                and focuses on user code in the stack trace!
-        """.trimIndent())
+        """.trimIndent()
+        )
     }
 
     @Test
